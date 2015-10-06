@@ -9,23 +9,27 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"sync"
 )
 
 const steamUrl = "http://api.steampowered.com/%v/%v/v%v/"
 
 // Api represents a Steam Web API handler
 type Api struct {
-	apiKey string
+	apiKey      string
+	apiKeyMutex *sync.Mutex
 }
 
 // Create new Steam Web API handler
 func NewSteamApi(apiKey string) (*Api, error) {
-	api := &Api{apiKey: apiKey}
+	api := &Api{apiKey: apiKey, apiKeyMutex: &sync.Mutex{}}
 	return api, nil
 }
 
 func (api *Api) ChangeApiKey(apiKey string) error {
+	api.apiKeyMutex.Lock()
 	api.apiKey = apiKey
+	api.apiKeyMutex.Unlock()
 	return nil
 }
 
