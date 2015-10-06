@@ -26,7 +26,7 @@ func (api *Api) GetPlayerBans(ids []uint64) ([]PlayerBan, error) {
 	}
 
 	data := url.Values{}
-	data.Add("key", api.apiKey)
+	data.Add("key", api.GetApiKey())
 	data.Add("steamids", strings.Join(strIds, ","))
 
 	var resp playerBansJson

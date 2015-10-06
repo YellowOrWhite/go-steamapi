@@ -128,7 +128,7 @@ func (api *Api) GetSchema(app int, language string) (*Schema, error) {
 	getSchema := NewSteamMethod("IEconItems_"+strconv.Itoa(app), "GetSchema", 1)
 
 	vals := url.Values{}
-	vals.Add("key", api.apiKey)
+	vals.Add("key", api.GetApiKey())
 	vals.Add("language", language)
 
 	var resp schemaJson

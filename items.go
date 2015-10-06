@@ -58,7 +58,7 @@ func (api *Api) GetPlayerItems(id uint64, app int) (*Inventory, error) {
 	getPlayerItems := NewSteamMethod("IEconItems_"+strconv.Itoa(app), "GetPlayerItems", 1)
 
 	vals := url.Values{}
-	vals.Add("key", api.apiKey)
+	vals.Add("key", api.GetApiKey())
 	vals.Add("SteamId", strconv.FormatUint(id, 10))
 
 	var resp playerItemsJson

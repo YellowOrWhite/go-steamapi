@@ -64,7 +64,7 @@ func (api *Api) GetPlayerSummaries(ids []uint64) ([]PlayerSummary, error) {
 		strIds = append(strIds, strconv.FormatUint(id, 10))
 	}
 	vals := url.Values{}
-	vals.Add("key", api.apiKey)
+	vals.Add("key", api.GetApiKey())
 	vals.Add("steamids", strings.Join(strIds, ","))
 
 	var resp playerSummaryJson
@@ -85,7 +85,7 @@ type ResolveVanityUrlResponse struct {
 
 func (api *Api) ResolveVanityUrl(vanityUrl string) (*ResolveVanityUrlResponse, error) {
 	data := url.Values{}
-	data.Add("key", api.apiKey)
+	data.Add("key", api.GetApiKey())
 	data.Add("vanityurl", vanityUrl)
 
 	var resp ResolveVanityUrlResponse

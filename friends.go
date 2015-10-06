@@ -33,7 +33,7 @@ var getFriendsList = NewSteamMethod("ISteamUser", "GetFriendList", 1)
 // is returned.
 func (api *Api) GetFriendsList(id uint64, filter Relationship) ([]SteamFriend, error) {
 	data := url.Values{}
-	data.Add("key", api.apiKey)
+	data.Add("key", api.GetApiKey())
 	data.Add("steamid", strconv.FormatUint(id, 10))
 	data.Add("relationship", string(filter))
 

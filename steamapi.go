@@ -26,6 +26,13 @@ func NewSteamApi(apiKey string) (*Api, error) {
 	return api, nil
 }
 
+func (api *Api) GetApiKey() string {
+	api.apiKeyMutex.Lock()
+	apiKey := api.apiKey
+	api.apiKeyMutex.Unlock()
+	return apiKey
+}
+
 func (api *Api) ChangeApiKey(apiKey string) error {
 	api.apiKeyMutex.Lock()
 	api.apiKey = apiKey

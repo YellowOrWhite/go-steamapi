@@ -35,7 +35,7 @@ var getAssetPrices = NewSteamMethod("ISteamEconomy", "GetAssetPrices", 1)
 
 func (api *Api) GetAssetPrices(appid uint64, language, currency string) ([]Asset, error) {
 	vals := url.Values{}
-	vals.Add("key", api.apiKey)
+	vals.Add("key", api.GetApiKey())
 	vals.Add("appid", strconv.FormatUint(appid, 10))
 	vals.Add("language", language)
 	vals.Add("currency", currency)
