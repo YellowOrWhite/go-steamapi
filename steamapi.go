@@ -19,9 +19,14 @@ type Api struct {
 }
 
 // Create new Steam Web API handler
-func NewSteamApi(apiKey string) *Api {
+func NewSteamApi(apiKey string) (*Api, error) {
 	api := &Api{apiKey: apiKey}
-	return api
+	return api, nil
+}
+
+func (api *Api) ChangeApiKey(apiKey string) error {
+	api.apiKey = apiKey
+	return nil
 }
 
 // A SteamMethod represents a Steam Web API method.
