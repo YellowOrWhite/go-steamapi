@@ -31,9 +31,9 @@ var getFriendsList = NewSteamMethod("ISteamUser", "GetFriendList", 1)
 // It returns nil if the profile is private or if there were no friends
 // found for the given relationship. In either one of both cases, no error
 // is returned.
-func GetFriendsList(id uint64, filter Relationship, apiKey string) ([]SteamFriend, error) {
+func (api *Api) GetFriendsList(id uint64, filter Relationship) ([]SteamFriend, error) {
 	data := url.Values{}
-	data.Add("key", apiKey)
+	data.Add("key", api.apiKey)
 	data.Add("steamid", strconv.FormatUint(id, 10))
 	data.Add("relationship", string(filter))
 

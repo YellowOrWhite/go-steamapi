@@ -19,14 +19,14 @@ type PlayerBan struct {
 
 var getPlayerBans = NewSteamMethod("ISteamUser", "GetPlayerBans", 1)
 
-func GetPlayerBans(ids []uint64, apiKey string) ([]PlayerBan, error) {
+func (api *Api) GetPlayerBans(ids []uint64) ([]PlayerBan, error) {
 	strIds := make([]string, len(ids))
 	for _, id := range ids {
 		strIds = append(strIds, strconv.FormatUint(id, 10))
 	}
 
 	data := url.Values{}
-	data.Add("key", apiKey)
+	data.Add("key", api.apiKey)
 	data.Add("steamids", strings.Join(strIds, ","))
 
 	var resp playerBansJson

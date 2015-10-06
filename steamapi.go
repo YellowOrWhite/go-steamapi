@@ -13,6 +13,17 @@ import (
 
 const steamUrl = "http://api.steampowered.com/%v/%v/v%v/"
 
+// Api represents a Steam Web API handler
+type Api struct {
+	apiKey string
+}
+
+// Create new Steam Web API handler
+func NewSteamApi(apiKey string) *Api {
+	api := &Api{apiKey: apiKey}
+	return api
+}
+
 // A SteamMethod represents a Steam Web API method.
 type SteamMethod string
 
